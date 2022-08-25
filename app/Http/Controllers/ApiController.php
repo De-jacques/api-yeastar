@@ -23,8 +23,11 @@ class ApiController extends Controller
         // $statusCode = $response->status();
         // $responseBody = json_decode($response->getBody(), true);
         // dd($responseBody);
-
         return view('layouts.main');
+    }
+
+    public function dashboard(){
+        return view('layouts.app');
     }
 }
 

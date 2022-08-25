@@ -16,7 +16,7 @@ class ShowContacts extends Component
     public $myRequest;
     public $deviceInfo;
     public $myData;
-    public $myResponse;
+    public $myResponse = [];
     public $getDeviceInfo = [];
 
     public function mount(){
@@ -36,21 +36,22 @@ class ShowContacts extends Component
         $this->statusCode = $response->status();
         $this->responseBody = json_decode($response->getBody(), true);
         $this->getToken = $this->responseBody['token'];
-        $this->deviceInfo = 'http://192.168.1.251:8088/api/v2.0.0/extension/list?token='.$this->getToken;
-        $this->getDeviceInfo = Http::withHeaders($headers)->post($this->deviceInfo);
-        $this->responseBody2 = json_decode($this->getDeviceInfo->getBody(), true);
+        // $this->deviceInfo = 'http://192.168.1.251:8088/api/v2.0.0/extension/list?token='.$this->getToken;
+        // $this->getDeviceInfo = Http::withHeaders($headers)->post($this->deviceInfo);
+        // $this->responseBody2 = json_decode($this->getDeviceInfo->getBody(), true);
         // dd(collect($this->responseBody2['extlist']['0']));
-        $this->myResponse = $this->responseBody2['extlist'];
+        // $this->myResponse = $this->responseBody2['extlist'];
         foreach ($this->myResponse as $key ) {
-            dd($key);
+            // dd($key);
         }
     }
 
 
     public function render()
     {
-        return view('livewire.show-contacts', [
-            'myData' => $this->myResponse
-        ]);
+        // return view('livewire.show-contacts', [
+        //     'myData' => $this->myResponse
+        // ]);
+        return view('livewire.show-contacts');
     }
 }
