@@ -1,0 +1,12 @@
+{
+    "fullAccess":[
+        {
+            "ip_server_yeastar": "https://192.168.1.251:8088",
+            "username" : "admin",
+            "password" : "f36875828e663291991403a0f6506faa",
+            "port" : "8260",
+            "version": "1.0.2"
+
+        }
+    ]
+}
