@@ -16,8 +16,10 @@ class ShowContacts extends Component
     public $myRequest;
     public $deviceInfo;
     public $myData;
-    public $myResponse = [];
-    public $getDeviceInfo = [];
+    public $myResponse;
+    public $contacts;
+    protected $getDeviceInfo;
+
 
     public function mount(){
         $this->apiURL = 'http://192.168.1.251:8088/api/v2.0.0/login';
@@ -30,28 +32,26 @@ class ShowContacts extends Component
         $headers = [
             'X-header' => 'value'
         ];
-
         $response = Http::withHeaders($headers)->post($this->apiURL, $postInput);
-
         $this->statusCode = $response->status();
         $this->responseBody = json_decode($response->getBody(), true);
         $this->getToken = $this->responseBody['token'];
-        // $this->deviceInfo = 'http://192.168.1.251:8088/api/v2.0.0/extension/list?token='.$this->getToken;
-        // $this->getDeviceInfo = Http::withHeaders($headers)->post($this->deviceInfo);
-        // $this->responseBody2 = json_decode($this->getDeviceInfo->getBody(), true);
-        // dd(collect($this->responseBody2['extlist']['0']));
-        // $this->myResponse = $this->responseBody2['extlist'];
-        foreach ($this->myResponse as $key ) {
-            // dd($key);
-        }
+        $this->deviceInfo = 'http://192.168.1.251:8088/api/v2.0.0/extension/list?token='.$this->getToken;
+        $this->getDeviceInfo = Http::withHeaders($headers)->post($this->deviceInfo);
+        $this->responseBody2 = json_decode($this->getDeviceInfo->getBody(), true);
+        // dd(($this->responseBody2['extlist']));
+        $this->contacts = collect($this->responseBody2['extlist']);
+        $this->myResponse = $this->contacts->flatten();
+        // dd($this->myResponse);
+
     }
 
 
     public function render()
     {
-        // return view('livewire.show-contacts', [
-        //     'myData' => $this->myResponse
-        // ]);
-        return view('livewire.show-contacts');
+        return view('livewire.show-contacts',
+            [
+                'contacts' => $this->myResponse
+            ]);
     }
 }

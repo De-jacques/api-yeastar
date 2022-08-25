@@ -1,4 +1,7 @@
 <div class="page">
+    <div>
+        {{-- {{$this->myResponse}}<br> --}}
+    </div>
     <div class="page-header">
       <h1 class="page-title">Liste Contacts</h1>
     </div>
@@ -194,13 +197,13 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
-                    </tr>
+                    @foreach ($myResponse as $item[0] => $value)
+                        <tr>
+                            {{-- <td>{{$value["number"]}}</td> --}}
+                            {{-- <td>{{$value["number"]}}</td> --}}
+                            <td>...</td>
+                        </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>
