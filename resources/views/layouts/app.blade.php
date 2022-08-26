@@ -419,105 +419,22 @@
           <li class="site-menu-item has-sub">
             <a href="javascript:void(0)">
                     <i class="site-menu-icon wb-file" aria-hidden="true"></i>
+                    <span class="site-menu-title">Utilisateurs</span>
+                </a>
+            <ul class="site-menu-sub">
+              <li class="site-menu-item">
+                <a class="animsition-link" href="{{route('show-contacts')}}">
+                  <span class="site-menu-title">Liste</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="site-menu-item has-sub">
+            <a href="javascript:void(0)">
+                    <i class="site-menu-icon wb-file" aria-hidden="true"></i>
                     <span class="site-menu-title">Contacts</span>
                 </a>
             <ul class="site-menu-sub">
-              {{-- <li class="site-menu-item has-sub">
-                <a href="javascript:void(0)">
-                  <span class="site-menu-title">Errors</span>
-                  <span class="site-menu-arrow"></span>
-                </a>
-                <ul class="site-menu-sub">
-                  <li class="site-menu-item">
-                    <a class="animsition-link" href="../pages/error-400.html">
-                      <span class="site-menu-title">400 Bad Request</span>
-                    </a>
-                  </li>
-                  <li class="site-menu-item">
-                    <a class="animsition-link" href="../pages/error-403.html">
-                      <span class="site-menu-title">403 Forbidden</span>
-                    </a>
-                  </li>
-                  <li class="site-menu-item">
-                    <a class="animsition-link" href="../pages/error-404.html">
-                      <span class="site-menu-title">404 Not Found</span>
-                    </a>
-                  </li>
-                  <li class="site-menu-item">
-                    <a class="animsition-link" href="../pages/error-500.html">
-                      <span class="site-menu-title">500 Internal Server Error</span>
-                    </a>
-                  </li>
-                  <li class="site-menu-item">
-                    <a class="animsition-link" href="../pages/error-503.html">
-                      <span class="site-menu-title">503 Service Unavailable</span>
-                    </a>
-                  </li>
-                </ul>
-              </li> --}}
-              {{-- <li class="site-menu-item">
-                <a class="animsition-link" href="../pages/faq.html">
-                  <span class="site-menu-title">FAQ</span>
-                </a>
-              </li>
-              <li class="site-menu-item">
-                <a class="animsition-link" href="../pages/gallery.html">
-                  <span class="site-menu-title">Gallery</span>
-                </a>
-              </li>
-              <li class="site-menu-item">
-                <a class="animsition-link" href="../pages/gallery-grid.html">
-                  <span class="site-menu-title">Gallery Grid</span>
-                </a>
-              </li>
-              <li class="site-menu-item">
-                <a class="animsition-link" href="../pages/search-result.html">
-                  <span class="site-menu-title">Search Result</span>
-                </a>
-              </li>
-              <li class="site-menu-item has-sub">
-                <a href="javascript:void(0)">
-                  <span class="site-menu-title">Maps</span>
-                  <span class="site-menu-arrow"></span>
-                </a>
-                <ul class="site-menu-sub">
-                  <li class="site-menu-item">
-                    <a class="animsition-link" href="../pages/map-google.html">
-                      <span class="site-menu-title">Google Maps</span>
-                    </a>
-                  </li>
-                  <li class="site-menu-item">
-                    <a class="animsition-link" href="../pages/map-vector.html">
-                      <span class="site-menu-title">Vector Maps</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="site-menu-item">
-                <a class="animsition-link" href="../pages/maintenance.html">
-                  <span class="site-menu-title">Maintenance</span>
-                </a>
-              </li>
-              <li class="site-menu-item">
-                <a class="animsition-link" href="../pages/forgot-password.html">
-                  <span class="site-menu-title">Forgot Password</span>
-                </a>
-              </li>
-              <li class="site-menu-item">
-                <a class="animsition-link" href="../pages/lockscreen.html">
-                  <span class="site-menu-title">Lockscreen</span>
-                </a>
-              </li>
-              <li class="site-menu-item">
-                <a class="animsition-link" href="../pages/login.html">
-                  <span class="site-menu-title">Login</span>
-                </a>
-              </li>
-              <li class="site-menu-item">
-                <a class="animsition-link" href="../pages/register.html">
-                  <span class="site-menu-title">Register</span>
-                </a>
-              </li> --}}
               <li class="site-menu-item">
                 <a class="animsition-link" href="{{route('show-contacts')}}">
                   <span class="site-menu-title">Liste</span>

@@ -5,18 +5,16 @@ namespace App\Http\Livewire;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 
-class ShowContacts extends Component
+class Dashboard extends Component
 {
     public $apiURL;
     public $responseBody;
     public $statusCode;
     public $getToken;
-    public $getExtension;
-    public $contacts;
-    public $allContact;
-    protected $getContact;
-    // public $statusCall;
-
+    public $deviceInfo;
+    protected $getDeviceInfo;
+    public $resultDeviceInfo;
+    public $infos;
 
     public function mount(){
         $this->apiURL = 'http://192.168.1.251:8088/api/v2.0.0/login';
@@ -33,20 +31,18 @@ class ShowContacts extends Component
         $this->statusCode = $response->status();
         $this->responseBody = json_decode($response->getBody(), true);
         $this->getToken = $this->responseBody['token'];
-        $this->getExtension = 'http://192.168.1.251:8088/api/v2.0.0/extension/list?token='.$this->getToken;
-        $this->getContact = Http::withHeaders($headers)->post($this->getExtension);
-        $this->allContact = json_decode($this->getContact->getBody(), true);
-        $this->contacts = collect($this->allContact['extlist']);
-        // dd($this->contacts);
+        $this->deviceInfo = 'http://192.168.1.251:8088/api/v2.0.0/deviceinfo/query?token='.$this->getToken;
+        $this->getDeviceInfo = Http::withHeaders($headers)->post($this->deviceInfo);
+        $this->resultDeviceInfo = json_decode($this->getDeviceInfo->getBody(), true);
+        $this->infos = collect($this->resultDeviceInfo['deviceinfo']);
+        // dd($this->infos);
     }
-
-
     public function render()
     {
-        return view('livewire.show-contacts',
+        return view('livewire.dashboard',
             [
-                'contacts' => $this->contacts,
-                // 'statusCall' =>
-            ]);
+                'infos' => $this->infos,
+            ]
+        );
     }
 }

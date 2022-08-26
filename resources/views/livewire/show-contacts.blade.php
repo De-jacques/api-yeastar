@@ -1,7 +1,8 @@
+{{-- @dd($this->statusCall); --}}
 <div>
     <div class="page">
         <div class="page-header">
-            <h1 class="page-title">Liste Contacts</h1>
+            <h1 class="page-title">Liste Utilisateurs</h1>
           </div>
           <div class="page-content container-fluid">
             <div class="row" data-plugin="matchHeight" data-by-row="true">
@@ -14,28 +15,29 @@
                                 <table class="table table-analytics mb-0 text-nowrap">
                                     <thead>
                                         <tr>
-
                                           <th class="">NUMERO</th>
                                           <th class="">UTILISATEUR</th>
                                           <th class="">STATUT</th>
-                                          {{-- <th class="">TYPE</th> --}}
                                         </tr>
                                       </thead>
                                       <tbody>
                                         @foreach ($contacts as $index => $contact )
                                             <tr>
-                                                <td><input class="form-control" type="text" wire:model="contacts.{{ $index }}.number" readonly></td>
+                                                <td ><input class="form-control" type="text" wire:model="contacts.{{ $index }}.number" readonly></td>
                                                 <td width="200px"><input class="form-control" type="text" wire:model="contacts.{{ $index }}.username" readonly></td>
-                                                @if ($contacts.$index.$status = "Registered")
+                                                <td><input class="form-control" type="text" name="statusCall" wire:model="contacts.{{ $index }}.status" value="" readonly></td>
+                                                {{-- <td>
+                                                   @dd($this->statusCall)
+                                                </td> --}}
+                                                {{-- @if ($contacts.$index.$status == "Registered")
                                                     <td>
                                                         <img src="{{asset('assets/images/check-mark.png')}}" alt="" srcset="">
                                                     </td>
                                                 @else
                                                     <td>
-                                                        <img src="{{asset('assets/images/cancel.png')}}" alt="" srcset="">
+
                                                     </td>
-                                                @endif
-                                                {{-- <td><input class="form-control" type="text" wire:model="contacts.{{ $index }}.type" readonly></td> --}}
+                                                @endif --}}
                                             </tr>
                                         @endforeach
                                       </tbody>

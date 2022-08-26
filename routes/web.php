@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApiController;
+use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\ShowContacts;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +20,9 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [ApiController::class, "index"]);
-Route::get('dashboard', [ApiController::class, "dashboard"])->name('dashboard');
+// Route::get('/', [ApiController::class, "index"]);
+Route::get('/', Dashboard::class);
+// Route::get('dashboard', [ApiController::class, "dashboard"])->name('dashboard');
 Route::get('/show-contacts', ShowContacts::class)->name('show-contacts');
+Route::get('dashboard', Dashboard::class)->name('dashboard');
 
