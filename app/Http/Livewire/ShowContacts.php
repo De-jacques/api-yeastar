@@ -16,7 +16,7 @@ class ShowContacts extends Component
     public $myRequest;
     public $deviceInfo;
     public $myData;
-    public $myResponse;
+    // public $myResponse;
     public $contacts;
     protected $getDeviceInfo;
 
@@ -41,8 +41,7 @@ class ShowContacts extends Component
         $this->responseBody2 = json_decode($this->getDeviceInfo->getBody(), true);
         // dd(($this->responseBody2['extlist']));
         $this->contacts = collect($this->responseBody2['extlist']);
-        $this->myResponse = $this->contacts->flatten();
-        // dd($this->myResponse);
+        // dd($this->contacts);
 
     }
 
@@ -51,7 +50,7 @@ class ShowContacts extends Component
     {
         return view('livewire.show-contacts',
             [
-                'contacts' => $this->myResponse
+                'contacts' => $this->contacts,
             ]);
     }
 }
