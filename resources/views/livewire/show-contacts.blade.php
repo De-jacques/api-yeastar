@@ -23,9 +23,10 @@
                                       <tbody>
                                         @foreach ($contacts as $index => $contact )
                                             <tr>
+                                                {{-- @dd(contacts.{{ $index }}.number); --}}
                                                 <td ><input class="form-control" type="text" wire:model="contacts.{{ $index }}.number" readonly></td>
                                                 <td width="200px"><input class="form-control" type="text" wire:model="contacts.{{ $index }}.username" readonly></td>
-                                                <td><input class="form-control" type="text" name="statusCall" wire:model="contacts.{{ $index }}.status" value="" readonly></td>
+                                                <td id="statusUser"><input class="form-control" type="text" name="statusCall" wire:model="contacts.{{ $index }}.status" value="" readonly></td>
                                                 {{-- <td>
                                                    @dd($this->statusCall)
                                                 </td> --}}
