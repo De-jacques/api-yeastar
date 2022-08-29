@@ -15,7 +15,7 @@ class ShowContacts extends Component
     public $contacts;
     public $allContact;
     protected $getContact;
-    // public $statusCall;
+    public $getValueStatus;
 
 
     public function mount(){

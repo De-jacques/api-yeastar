@@ -40,10 +40,11 @@
     <![endif]-->
 
     <!-- Scripts -->
-    <script src="{{asset('assets/global/vendor/breakpoints/breakpoints.js')}}"></script>
+    <script src="{{asset('assets/js/alpine.js')}}"></script>
+    {{-- <script src="{{asset('assets/global/vendor/breakpoints/breakpoints.js')}}"></script>
     <script>
       Breakpoints();
-    </script>
+    </script> --}}
   </head>
   <body class="animsition dashboard">
     <!--[if lt IE 8]>
@@ -159,32 +160,32 @@
                       <ul class="blocks-3">
                         <li>
                           <a class="thumbnail m-0" href="javascript:void(0)">
-                            <img class="w-full" src="../../../global/photos/placeholder.png" alt="..." />
+                            {{-- <img class="w-full" src="../../../global/photos/placeholder.png" alt="..." /> --}}
                           </a>
                         </li>
                         <li>
                           <a class="thumbnail m-0" href="javascript:void(0)">
-                            <img class="w-full" src="../../../global/photos/placeholder.png" alt="..." />
+                            {{-- <img class="w-full" src="../../../global/photos/placeholder.png" alt="..." /> --}}
                           </a>
                         </li>
                         <li>
                           <a class="thumbnail m-0" href="javascript:void(0)">
-                            <img class="w-full" src="../../../global/photos/placeholder.png" alt="..." />
+                            {{-- <img class="w-full" src="../../../global/photos/placeholder.png" alt="..." /> --}}
                           </a>
                         </li>
                         <li>
                           <a class="thumbnail m-0" href="javascript:void(0)">
-                            <img class="w-full" src="../../../global/photos/placeholder.png" alt="..." />
+                            {{-- <img class="w-full" src="../../../global/photos/placeholder.png" alt="..." /> --}}
                           </a>
                         </li>
                         <li>
                           <a class="thumbnail m-0" href="javascript:void(0)">
-                            <img class="w-full" src="../../../global/photos/placeholder.png" alt="..." />
+                            {{-- <img class="w-full" src="../../../global/photos/placeholder.png" alt="..." /> --}}
                           </a>
                         </li>
                         <li>
                           <a class="thumbnail m-0" href="javascript:void(0)">
-                            <img class="w-full" src="../../../global/photos/placeholder.png" alt="..." />
+                            {{-- <img class="w-full" src="../../../global/photos/placeholder.png" alt="..." /> --}}
                           </a>
                         </li>
                       </ul>
@@ -1085,15 +1086,15 @@
     <script src="{{asset('assets/global/vendor/ashoverscroll/jquery-asHoverScroll.j')}}s"></script>
 
     <!-- Plugins -->
-    <script src="{{asset('assets/global/vendor/switchery/switchery.js')}}"></script>
+    {{-- <script src="{{asset('assets/global/vendor/switchery/switchery.js')}}"></script>
     <script src="{{asset('assets/global/vendor/intro-js/intro.js')}}"></script>
     <script src="{{asset('assets/global/vendor/screenfull/screenfull.js')}}../../.."></script>
     <script src="{{asset('assets/global/vendor/slidepanel/jquery-slidePanel.js')}}"></script>
     <script src="{{asset('assets/global/vendor/chartist/chartist.js')}}"></script>
-    <script src="{{asset('assets/global/vendor/raphael/raphael.min.js')}}"></script>
-    <script src="{{asset('assets/global/vendor/morris/morris.min.js')}}"></script>
-    <script src="{{asset('assets/global/vendor/matchheight/jquery.matchHeight-min.js')}}"></script>
-    <script src="{{asset('assets/global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.js')}}"></script>
+    <script src="{{asset('assets/global/vendor/raphael/raphael.min.js')}}"></script> --}}
+    {{-- <script src="{{asset('assets/global/vendor/morris/morris.min.js')}}"></script> --}}
+    {{-- <script src="{{asset('assets/global/vendor/matchheight/jquery.matchHeight-min.js')}}"></script>
+    <script src="{{asset('assets/global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.js')}}"></script> --}}
     <!-- Scripts -->
     <script src="{{asset('assets/global/js/Component.js')}}"></script>
     <script src="{{asset('assets/global/js/Plugin.js')}}"></script>
@@ -1116,7 +1117,16 @@
     <script src="{{asset('assets/global/js/Plugin/slidepanel.js')}}"></script>
     <script src="{{asset('assets/global/js/Plugin/switchery.js')}}"></script>
     <script src="{{asset('assets/global/js/Plugin/matchheight.js')}}"></script>
-    <script src="{{asset('assets/examples/js/dashboard/analytics.js')}}"></script>
+    {{-- <script src="{{asset('assets/examples/js/dashboard/analytics.js')}}"></script> --}}
     @livewireScripts
+
+    {{-- <script type="text/javascript">
+        var statusUser = document.querySelectorAll(".statusUser");
+            console.log(statusUser);
+            statusUser.forEach(element =>{
+                let statusValue = element.innerText;
+                console.log(statusValue);
+            });
+    </script> --}}
   </body>
 </html>

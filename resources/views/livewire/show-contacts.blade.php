@@ -2,7 +2,7 @@
 <div>
     <div class="page">
         <div class="page-header">
-            <h1 class="page-title">Liste Utilisateurs</h1>
+            <h1 class="page-title">Liste Extensions</h1>
           </div>
           <div class="page-content container-fluid">
             <div class="row" data-plugin="matchHeight" data-by-row="true">
@@ -23,22 +23,20 @@
                                       <tbody>
                                         @foreach ($contacts as $index => $contact )
                                             <tr>
-                                                {{-- @dd(contacts.{{ $index }}.number); --}}
-                                                <td ><input class="form-control" type="text" wire:model="contacts.{{ $index }}.number" readonly></td>
+                                                <td><input class="form-control" type="text" wire:model="contacts.{{ $index }}.number" readonly></td>
                                                 <td width="200px"><input class="form-control" type="text" wire:model="contacts.{{ $index }}.username" readonly></td>
-                                                <td id="statusUser"><input class="form-control" type="text" name="statusCall" wire:model="contacts.{{ $index }}.status" value="" readonly></td>
-                                                {{-- <td>
-                                                   @dd($this->statusCall)
-                                                </td> --}}
-                                                {{-- @if ($contacts.$index.$status == "Registered")
-                                                    <td>
-                                                        <img src="{{asset('assets/images/check-mark.png')}}" alt="" srcset="">
-                                                    </td>
-                                                @else
-                                                    <td>
-
-                                                    </td>
-                                                @endif --}}
+                                                @if ($contact['status'] == "Registered")
+                                                    <td><img src="{{asset('assets/images/check-mark.png')}}" alt="" srcset=""></td>
+                                                @endif
+                                                @if ($contact['status'] == "Unavailable")
+                                                    <td><img src="{{asset('assets/images/cancel.png')}}" alt="" srcset=""></td>
+                                                @endif
+                                                @if ($contact['status'] == "Ringing")
+                                                    <td><img src="{{asset('assets/images/telephone.png')}}" alt="" srcset=""></td>
+                                                @endif
+                                                @if ($contact['status'] == "Busy" )
+                                                <td><img src="{{asset('assets/images/time.png')}}" alt="" srcset=""></td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                       </tbody>
