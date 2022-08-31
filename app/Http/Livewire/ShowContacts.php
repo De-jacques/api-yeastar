@@ -2,20 +2,28 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Extension;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
+use Livewire\WithPagination;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Carbon;
 
 class ShowContacts extends Component
 {
+    use WithPagination;
+
     public $apiURL;
     public $responseBody;
     public $statusCode;
     public $getToken;
     public $getExtension;
-    public $contacts;
-    public $allContact;
-    protected $getContact;
+    public $extensionsIPBX;
+    public $allExtension;
+    protected $getExtensionIPBX;
     public $getValueStatus;
+    protected $paginator;
 
 
     public function mount(){
@@ -34,19 +42,30 @@ class ShowContacts extends Component
         $this->responseBody = json_decode($response->getBody(), true);
         $this->getToken = $this->responseBody['token'];
         $this->getExtension = 'http://192.168.1.251:8088/api/v2.0.0/extension/list?token='.$this->getToken;
-        $this->getContact = Http::withHeaders($headers)->post($this->getExtension);
-        $this->allContact = json_decode($this->getContact->getBody(), true);
-        $this->contacts = collect($this->allContact['extlist']);
-        // dd($this->contacts);
+        $this->getExtensionIPBX = Http::withHeaders($headers)->post($this->getExtension);
+        $this->allExtension = json_decode($this->getExtensionIPBX->getBody(), true);
+        $this->extensionsIPBX = collect($this->allExtension['extlist']);
+        // dd($this->extensionsIPBX);
+        foreach ($this->extensionsIPBX as $key => $extension) {
+            // $data[] = [
+            //     'number' => $extension['number'],
+            //     'status' => $extension['status'],
+            //     'type' => $extension['type'],
+            //     'username' => $extension['username'],
+            //     'created_at' => Carbon::now(),
+            //     'updated_at' => Carbon::now()
+            // ];
+        }
+        // $insertData = Extension::insert($data);
     }
 
 
     public function render()
     {
+
         return view('livewire.show-contacts',
             [
-                'contacts' => $this->contacts,
-                // 'statusCall' =>
+                'extensionsIPBX' => $this->extensionsIPBX,
             ]);
     }
 }

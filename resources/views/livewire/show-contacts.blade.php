@@ -21,24 +21,25 @@
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        @foreach ($contacts as $index => $contact )
+                                        @foreach ($extensionsIPBX as $index => $extension )
                                             <tr>
-                                                <td><input class="form-control" type="text" wire:model="contacts.{{ $index }}.number" readonly></td>
-                                                <td width="200px"><input class="form-control" type="text" wire:model="contacts.{{ $index }}.username" readonly></td>
-                                                @if ($contact['status'] == "Registered")
+                                                <td><input class="form-control" type="text" wire:model="extensionsIPBX.{{ $index }}.number" readonly></td>
+                                                <td width="200px"><input class="form-control" type="text" wire:model="extensionsIPBX.{{ $index }}.username" readonly></td>
+                                                @if ($extension['status'] == "Registered")
                                                     <td><img src="{{asset('assets/images/check-mark.png')}}" alt="" srcset=""></td>
                                                 @endif
-                                                @if ($contact['status'] == "Unavailable")
+                                                @if ($extension['status'] == "Unavailable")
                                                     <td><img src="{{asset('assets/images/cancel.png')}}" alt="" srcset=""></td>
                                                 @endif
-                                                @if ($contact['status'] == "Ringing")
+                                                @if ($extension['status'] == "Ringing")
                                                     <td><img src="{{asset('assets/images/telephone.png')}}" alt="" srcset=""></td>
                                                 @endif
-                                                @if ($contact['status'] == "Busy" )
+                                                @if ($extension['status'] == "Busy" )
                                                 <td><img src="{{asset('assets/images/time.png')}}" alt="" srcset=""></td>
                                                 @endif
                                             </tr>
                                         @endforeach
+                                        {{-- {{$this->contacts->links() }} --}}
                                       </tbody>
                                 </table>
                             </div>

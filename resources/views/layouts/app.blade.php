@@ -420,7 +420,7 @@
           <li class="site-menu-item has-sub">
             <a href="javascript:void(0)">
                     <i class="site-menu-icon wb-file" aria-hidden="true"></i>
-                    <span class="site-menu-title">Utilisateurs</span>
+                    <span class="site-menu-title">Extensions</span>
                 </a>
             <ul class="site-menu-sub">
               <li class="site-menu-item">
