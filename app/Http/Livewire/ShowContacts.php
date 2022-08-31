@@ -20,6 +20,7 @@ class ShowContacts extends Component
     public $getToken;
     public $getExtension;
     public $extensionsIPBX;
+    protected $extensionsInDB;
     public $allExtension;
     protected $getExtensionIPBX;
     public $getValueStatus;
@@ -45,6 +46,20 @@ class ShowContacts extends Component
         $this->getExtensionIPBX = Http::withHeaders($headers)->post($this->getExtension);
         $this->allExtension = json_decode($this->getExtensionIPBX->getBody(), true);
         $this->extensionsIPBX = collect($this->allExtension['extlist']);
+        $this->extensionsInDB = Extension::paginate(10);
+        // dd($extensionsInDB);
+
+        //  foreach ($extensionsInDB as $i => $value) {
+        //         if ($value['number'] == 109) {
+        //             dd($value['username']);
+        //         }
+        // }
+
+        // dd($extensionsInDB);
+        // $convertExtensionToArray = $extensionsInDB->toArray();
+        // dd($convertExtensionToArray['number']);
+        // $extensionsFilter = Extension::where('number',100)->get();
+        // dd($extensionsFilter->toArray());
         // dd($this->extensionsIPBX);
         foreach ($this->extensionsIPBX as $key => $extension) {
             // $data[] = [
@@ -55,6 +70,12 @@ class ShowContacts extends Component
             //     'created_at' => Carbon::now(),
             //     'updated_at' => Carbon::now()
             // ];
+
+            foreach ($this->extensionsInDB as $i => $value) {
+                // if ($extension['number'] == $value['number']) {
+                //     dd($value['username']);
+                // }
+            }
         }
         // $insertData = Extension::insert($data);
     }
@@ -66,6 +87,7 @@ class ShowContacts extends Component
         return view('livewire.show-contacts',
             [
                 'extensionsIPBX' => $this->extensionsIPBX,
+                'extensionsInDB' => Extension::paginate(10),
             ]);
     }
 }
