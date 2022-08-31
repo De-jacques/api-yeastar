@@ -1,7 +1,7 @@
 <div>
     <div class="page">
         <div class="page-header">
-            <h1 class="page-title">Liste Extensions</h1>
+            {{-- <h1 class="page-title">Liste Extensions</h1> --}}
           </div>
           <div class="page-content container-fluid">
             <div class="row" data-plugin="matchHeight" data-by-row="true">
@@ -12,7 +12,7 @@
                         <div class="card-block px-30 pt-0">
                             <div class="table-responsive">
                                 <table class="table table-analytics mb-0 text-nowrap">
-                                    <thead>
+                                    {{-- <thead>
                                         <tr>
                                             <th>STATUT</th>
                                             <th class="">NUMERO</th>
@@ -20,7 +20,7 @@
                                             <th class="">STATUT</th>
                                             <th>ACTIONS</th>
                                         </tr>
-                                      </thead>
+                                      </thead> --}}
                                       <tbody>
                                         @foreach ($extensionsIPBX as $index => $extension )
                                             {{-- <tr>
@@ -130,25 +130,33 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                        {{-- {{$extensionsInDB->links()}} --}}
+
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
-                    {{-- <div class="row">
+                    <div class="row">
                         <div class="col-sm-12 col-md-5">
-                            <div class="dataTables_info" id="exampleAddRow_info" role="status" aria-live="polite">Showing 1 to 10 of 35 entries</div></div>
+                            <div class="dataTables_info" id="exampleAddRow_info" role="status" aria-live="polite">
+                            </div>
+                        </div>
                             <div class="col-sm-12 col-md-7">
-                                <div class="dataTables_paginate paging_simple_numbers" id="exampleAddRow_paginate">
-                                    <ul class="pagination"><li class="paginate_button page-item previous disabled" id="exampleAddRow_previous"><a href="#" aria-controls="exampleAddRow" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                                {{-- <div class="dataTables_paginate paging_simple_numbers" id="exampleAddRow_paginate">
+                                    <ul class="pagination">
+                                        <li class="paginate_button page-item previous disabled" id="exampleAddRow_previous">
+                                            <a href="#" aria-controls="exampleAddRow" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
                                         <li class="paginate_button page-item active"><a href="#" aria-controls="exampleAddRow" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
                                         <li class="paginate_button page-item "><a href="#" aria-controls="exampleAddRow" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
                                         <li class="paginate_button page-item "><a href="#" aria-controls="exampleAddRow" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
                                         <li class="paginate_button page-item "><a href="#" aria-controls="exampleAddRow" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item next" id="exampleAddRow_next"><a href="#" aria-controls="exampleAddRow" data-dt-idx="5" tabindex="0" class="page-link">Next</a></li>
                                     </ul>
-                                </div>
+                                </div> --}}
+                                @if (count($extensionsInDB))
+                                {{$extensionsInDB->links('livewire.livewire_pagination_links')}}
+                            @endif
                             </div>
-                    </div> --}}
+                    </div>
                 </div>
               </div>
             </div>

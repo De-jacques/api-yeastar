@@ -46,7 +46,7 @@ class ShowContacts extends Component
         $this->getExtensionIPBX = Http::withHeaders($headers)->post($this->getExtension);
         $this->allExtension = json_decode($this->getExtensionIPBX->getBody(), true);
         $this->extensionsIPBX = collect($this->allExtension['extlist']);
-        $this->extensionsInDB = Extension::paginate(10);
+        $this->extensionsInDB = Extension::paginate(5);
         // dd($extensionsInDB);
 
         //  foreach ($extensionsInDB as $i => $value) {
@@ -87,7 +87,7 @@ class ShowContacts extends Component
         return view('livewire.show-contacts',
             [
                 'extensionsIPBX' => $this->extensionsIPBX,
-                'extensionsInDB' => Extension::paginate(10),
+                'extensionsInDB' => Extension::paginate(5),
             ]);
     }
 }
