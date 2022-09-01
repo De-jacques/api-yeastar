@@ -46,22 +46,13 @@ class ShowContacts extends Component
         $this->getExtensionIPBX = Http::withHeaders($headers)->post($this->getExtension);
         $this->allExtension = json_decode($this->getExtensionIPBX->getBody(), true);
         $this->extensionsIPBX = collect($this->allExtension['extlist']);
-        $this->extensionsInDB = Extension::paginate(5);
-        // dd($extensionsInDB);
-
-        //  foreach ($extensionsInDB as $i => $value) {
-        //         if ($value['number'] == 109) {
-        //             dd($value['username']);
-        //         }
-        // }
-
-        // dd($extensionsInDB);
-        // $convertExtensionToArray = $extensionsInDB->toArray();
-        // dd($convertExtensionToArray['number']);
-        // $extensionsFilter = Extension::where('number',100)->get();
-        // dd($extensionsFilter->toArray());
         // dd($this->extensionsIPBX);
+        $this->extensionsInDB = Extension::paginate(10);
+
         foreach ($this->extensionsIPBX as $key => $extension) {
+
+            //--- Start Store Extensions in DB
+
             // $data[] = [
             //     'number' => $extension['number'],
             //     'status' => $extension['status'],
@@ -70,16 +61,20 @@ class ShowContacts extends Component
             //     'created_at' => Carbon::now(),
             //     'updated_at' => Carbon::now()
             // ];
-
             foreach ($this->extensionsInDB as $i => $value) {
-                // if ($extension['number'] == $value['number']) {
-                //     dd($value['username']);
-                // }
+                    if ($extension['status'] !== $value['status']) {
+                        Extension::where('number', $extension['number'])->update(['status' => $extension['status']]);
+                    }
+                    else {
+                       Extension::where('number', $extension['number'])->update(['status' => $extension['status']]);
+                    }
+
             }
         }
+        //--- END Start Store Extensions in DB
         // $insertData = Extension::insert($data);
-    }
 
+    }
 
     public function render()
     {
@@ -87,7 +82,7 @@ class ShowContacts extends Component
         return view('livewire.show-contacts',
             [
                 'extensionsIPBX' => $this->extensionsIPBX,
-                'extensionsInDB' => Extension::paginate(5),
+                'extensionsInDB' => Extension::paginate(10),
             ]);
     }
 }

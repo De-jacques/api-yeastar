@@ -22,8 +22,8 @@
                                         </tr>
                                       </thead> --}}
                                       <tbody>
-                                        @foreach ($extensionsIPBX as $index => $extension )
-                                            {{-- <tr>
+                                        {{-- @foreach ($extensionsIPBX as $index => $extension )
+                                            <tr>
                                                 @if ($extension['status'] == "Registered")
                                                     <td width="100px"><img src="{{asset('assets/images/check.png')}}" class="" alt="" srcset=""></td>
                                                 @endif
@@ -54,8 +54,8 @@
                                                 @if ($extension['status'] == "Busy" )
                                                      <input class="form-control" type="text" wire:model="extensionsIPBX.{{ $index }}.status" readonly>
                                                 @endif
-                                            </tr> --}}
-                                        @endforeach
+                                            </tr>
+                                        @endforeach --}}
                                       </tbody>
                                 </table>
                             </div>
@@ -108,18 +108,32 @@
                                     @foreach ($extensionsInDB as $key => $value)
                                         <tr class="gradeA odd" role="row">
                                             <td>{{$value['id']}}</td>
+
                                             @if ($value['status'] == "Registered")
                                                 <td><img src="{{asset('assets/images/check.png')}}" class="" alt="" srcset=""></td>
                                             @endif
                                             @if ($value['status'] == "Unavailable")
                                                 <td><img src="{{asset('assets/images/multiply.png')}}" class="" alt="" srcset=""></td>
                                             @endif
+                                            @if ($value['status'] == "Ringing")
+                                            <td><img src="{{asset('assets/images/telephone.png')}}" class="" alt="" srcset=""></td>
+                                            @endif
+                                            @if ($value['status'] == "Busy")
+                                            <td><img src="{{asset('assets/images/time.png')}}" class="" alt="" srcset=""></td>
+                                            @endif
                                             <td>{{$value['number']}}</td>
                                             <td>{{$value['username']}}</td>
+
                                             @if ($value['status'] == "Registered")
                                             <td>{{$value['status']}}</td>
                                             @endif
                                             @if ($value['status'] == "Unavailable")
+                                            <td>{{$value['status']}}</td>
+                                            @endif
+                                            @if ($value['status'] == "Ringing")
+                                            <td>{{$value['status']}}</td>
+                                            @endif
+                                            @if ($value['status'] == "Busy")
                                             <td>{{$value['status']}}</td>
                                             @endif
                                             <td class="actions">
