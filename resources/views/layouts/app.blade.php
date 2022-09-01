@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta name="description" content="bootstrap admin template">
     <meta name="author" content="">
-    {{-- <title>Dashboard Analytics | Remark Admin Template</title> --}}
+    {{-- <title>{{config('app.name')}}</title> --}}
+    <title>@yield('title') - {{ config('app.name') }} </title>
     @livewireStyles
     <link rel="apple-touch-icon" href="{{asset('assets/images/apple-touch-icon.png')}}">
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">

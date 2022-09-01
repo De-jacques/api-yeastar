@@ -1,70 +1,11 @@
+@section('title')
+Extensions
+@endsection
 <div>
     <div class="page">
         <div class="page-header">
-            {{-- <h1 class="page-title">Liste Extensions</h1> --}}
+            <h1 class="page-title"><a href="{{route('dashboard')}}" rel="noopener noreferrer"><i class="icon wb-home" aria-hidden="true"></a></i></h1>
           </div>
-          <div class="page-content container-fluid">
-            <div class="row" data-plugin="matchHeight" data-by-row="true">
-                <div class="col-12">
-                    <div id="countriesVistsWidget" class="card card-shadow card-md">
-                        <div class="card-header card-header-transparent pb-15">
-                        </div>
-                        <div class="card-block px-30 pt-0">
-                            <div class="table-responsive">
-                                <table class="table table-analytics mb-0 text-nowrap">
-                                    {{-- <thead>
-                                        <tr>
-                                            <th>STATUT</th>
-                                            <th class="">NUMERO</th>
-                                            <th class="">NOMS & PRENOMS</th>
-                                            <th class="">STATUT</th>
-                                            <th>ACTIONS</th>
-                                        </tr>
-                                      </thead> --}}
-                                      <tbody>
-                                        {{-- @foreach ($extensionsIPBX as $index => $extension )
-                                            <tr>
-                                                @if ($extension['status'] == "Registered")
-                                                    <td width="100px"><img src="{{asset('assets/images/check.png')}}" class="" alt="" srcset=""></td>
-                                                @endif
-                                                @if ($extension['status'] == "Unavailable")
-                                                    <td width="10px"><img src="{{asset('assets/images/multiply.png')}}" class="" alt="" srcset=""></td>
-                                                @endif
-                                                @if ($extension['status'] == "Ringing")
-                                                    <td><img src="{{asset('assets/images/telephone.png')}}" alt="" srcset=""></td>
-                                                @endif
-                                                @if ($extension['status'] == "Busy")
-                                                    <td><img src="{{asset('assets/images/time.png')}}" alt="" srcset=""></td>
-                                                @endif
-                                                <td width="90px"><input class="form-control" type="text" wire:model="extensionsIPBX.{{ $index }}.number" readonly></td>
-                                                <td width="300px"><input class="form-control" type="text" wire:model="extensionsIPBX.{{ $index }}.username" readonly></td>
-                                                @if ($extension['status'] == "Registered")
-                                                    <td width="300px">
-                                                        <input class="form-control" type="text" wire:model="extensionsIPBX.{{ $index }}.status" readonly>
-                                                    </td>
-                                                @endif
-                                                @if ($extension['status'] == "Unavailable")
-                                                    <td width="300px">
-                                                        <input class="form-control" type="text" wire:model="extensionsIPBX.{{ $index }}.status" readonly>
-                                                    </td>
-                                                @endif
-                                                @if ($extension['status'] == "Ringing")
-                                                    <input class="form-control" type="text" wire:model="extensionsIPBX.{{ $index }}.status" readonly>
-                                                @endif
-                                                @if ($extension['status'] == "Busy" )
-                                                     <input class="form-control" type="text" wire:model="extensionsIPBX.{{ $index }}.status" readonly>
-                                                @endif
-                                            </tr>
-                                        @endforeach --}}
-                                      </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="page-content">
             <!-- Panel Table Add Row -->
             <div class="panel">
@@ -75,8 +16,8 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="mb-15">
-                      <button id="addToTable" class="btn btn-outline btn-primary" type="button">
-                        <i class="icon wb-plus" aria-hidden="true"></i> Ajouter Extension
+                      <button id="addToTable" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline btn-primary" type="button">
+                        <i class="icon wb-plus" aria-hidden="true"></i> Ajouter
                       </button>
                     </div>
                   </div>
@@ -137,14 +78,75 @@
                                             <td>{{$value['status']}}</td>
                                             @endif
                                             <td class="actions">
-                                                <a href="#" class="btn btn-sm btn-icon btn-pure btn-default on-editing save-row" data-toggle="tooltip" data-original-title="Save" hidden=""><i class="icon wb-wrench" aria-hidden="true"></i></a>
-                                                <a href="#" class="btn btn-sm btn-icon btn-pure btn-default on-editing cancel-row" data-toggle="tooltip" data-original-title="Delete" hidden=""><i class="icon wb-close" aria-hidden="true"></i></a>
-                                                <a href="#" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row" data-toggle="tooltip" data-original-title="Edit"><i class="icon wb-edit" aria-hidden="true"></i></a>
-                                                <a href="#" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row" data-toggle="tooltip" data-original-title="Remove"><i class="icon wb-trash" aria-hidden="true"></i></a>
+                                                <a href="#" class="btn btn-sm btn-icon btn-pure btn-success on-default edit-row" data-toggle="modal" data-target="#EditExtension{{$value['id']}}"><i class="icon wb-edit" aria-hidden="true"></i></a>
+                                                <a href="#" class="btn btn-sm btn-icon btn-pure btn-danger on-default remove-row" data-toggle="modal" data-target="#DeleteExtension{{$value['id']}}"><i class="icon wb-trash" aria-hidden="true"></i></a>
                                             </td>
                                         </tr>
-                                    @endforeach
 
+                                        <!--Start Add Extension Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-primary">
+                                                    <h5 class="modal-title text-white" id="exampleModalLabel">Ajouter une extension</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                    ...
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary">Enregistrer</button>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        <!--End Add Extension Modal -->
+
+                                        <!--Start Edit Extension Modal -->
+                                        <div class="modal fade" id="EditExtension{{$value['id']}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-success">
+                                                <h5 class="modal-title text-white" id="exampleModalLabel ">Modifier Extension - {{$value['number']}}</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                ...
+                                                </div>
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-success">Modifier</button>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    <!--End Edit Extension Modal -->
+
+                                     <!--Start Delete Extension Modal -->
+                                     <div class="modal fade" id="DeleteExtension{{$value['id']}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header badge-default">
+                                            <h5 class="modal-title" id="exampleModalLabel ">Voulez-vous supprimer l'extension - {{$value['number']}} ?</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                            <div class="modal-body d-flex justify-content-center">
+                                                <button type="button" class="btn btn-outline-danger">Oui</button>
+                                                <button type="button" class="btn btn-outline-primary ml-5">Non</button>
+                                            </div>
+                                            <div class="modal-footer">
+                                            {{-- <button type="button" class="btn btn-success">Modifier</button> --}}
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                <!--End Delete Extension Modal -->
+                                    @endforeach
                                 </tbody>
                             </table>
 
