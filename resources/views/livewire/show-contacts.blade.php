@@ -78,7 +78,7 @@ Extensions
                                             <td>{{$value['status']}}</td>
                                             @endif
                                             <td class="actions">
-                                                <a href="#" class="btn btn-sm btn-icon btn-pure btn-success on-default edit-row" data-toggle="modal" data-target="#EditExtension{{$value['id']}}"><i class="icon wb-edit" aria-hidden="true"></i></a>
+                                                <a href="#" class="btn btn-sm btn-icon btn-pure btn-primary on-default edit-row" data-toggle="modal" data-target="#EditExtension{{$value['id']}}"><i class="icon wb-edit" aria-hidden="true"></i></a>
                                                 <a href="#" class="btn btn-sm btn-icon btn-pure btn-danger on-default remove-row" data-toggle="modal" data-target="#DeleteExtension{{$value['id']}}"><i class="icon wb-trash" aria-hidden="true"></i></a>
                                             </td>
                                         </tr>
@@ -94,10 +94,30 @@ Extensions
                                                     </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                    ...
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control" placeholder="Number" name="number" id="">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control" placeholder="Username" name="username" id="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-2">
+                                                            <div class="col-md-12">
+                                                              <input type="text" class="form-control" placeholder="Registername" name="registername" id="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-2">
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control" placeholder="Registerpassword" name="registerpassword" id="">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control" placeholder="Confirm Registerpassword" name="confirmRegisterpassword" id="">
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary">Enregistrer</button>
+                                                    <button type="button" wire:click.prevent="addExtension()" class="btn btn-primary">Enregistrer</button>
                                                     </div>
                                                 </div>
                                                 </div>
