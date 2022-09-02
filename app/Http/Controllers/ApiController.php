@@ -11,6 +11,13 @@ class ApiController extends Controller
     {
         // return view('layouts.main');
     }
+
+    public function addExtension(Request $request){
+        dd($request->number);
+        $request->validate([
+            'number' => 'required'
+        ]);
+    }
 }
 
 

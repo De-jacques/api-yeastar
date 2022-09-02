@@ -94,9 +94,11 @@ Extensions
                                                     </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <div class="row">
+                                                        <form>
+                                                            <h1>{{$number}}</h1>
+                                                              <div class="row">
                                                             <div class="col-md-6">
-                                                                <input type="text" class="form-control" placeholder="Number" name="number" id="">
+                                                                <input type="text" class="form-control @error('number') is-invalid @enderror" placeholder="Number" name="number" wire:model="number" id="">
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <input type="text" class="form-control" placeholder="Username" name="username" id="">
@@ -115,10 +117,13 @@ Extensions
                                                                 <input type="text" class="form-control" placeholder="Confirm Registerpassword" name="confirmRegisterpassword" id="">
                                                             </div>
                                                         </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" wire:click.prevent="addExtension()" class="btn btn-primary">Enregistrer</button>
+                                                        </div>
+                                                        </form>
+
                                                     </div>
-                                                    <div class="modal-footer">
-                                                    <button type="button" wire:click.prevent="addExtension()" class="btn btn-primary">Enregistrer</button>
-                                                    </div>
+
                                                 </div>
                                                 </div>
                                             </div>

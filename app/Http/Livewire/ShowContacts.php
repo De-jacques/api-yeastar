@@ -19,6 +19,13 @@ class ShowContacts extends Component
     public $getValueStatus; public $postInput; public $headers; public $addExtension; public $callAPI;
     protected $response; protected $getExtensionIPBX; protected $extensionsInDB;
 
+    public $number;
+    public Extension $storeExtensions;
+
+    protected $rules = [
+        'storeExtensions.number' => 'required'
+    ];
+
     public function mount(){
         $this->callAPI = 'http://192.168.1.251:8088/api/v2.0.0';
         $this->apiURL = 'http://192.168.1.251:8088/api/v2.0.0/login';
@@ -64,6 +71,25 @@ class ShowContacts extends Component
                     else {
                        Extension::where('number', $extension['number'])->update(['status' => $extension['status']]);
                     }
+                    $checkIPBX = $this->extensionsIPBX;
+                    $convertDataInArray = $checkIPBX->toArray();
+                    $lastDataInArray = end($convertDataInArray);
+                    // dd($lastDataInArray);
+                    foreach ($lastDataInArray as $j) {
+                        // dd($lastDataInArray['number']);
+                       $result = Extension::where('number', $lastDataInArray['number'])->first();
+                       if ($result === null) {
+                        // dd($lastDataInArray);
+                        Extension::create([
+                            'number' => $lastDataInArray['number'],
+                            'status' => $lastDataInArray['status'],
+                            'type' => 'SIP',
+                            'username' => $lastDataInArray['username'],
+                            'created_at' => Carbon::now(),
+                            'updated_at' => Carbon::now()
+                        ]);
+                       }
+                    }
             }
         }
         //--- END Start Store Extensions in DB
@@ -73,6 +99,8 @@ class ShowContacts extends Component
 
     public function addExtension(Request $request){
         $this->addExtension = $this->callAPI.'/extension/add?token='.$this->getToken;
+        // dd($this->addExtension);
+        // $this->number = $number;
     }
 
 
