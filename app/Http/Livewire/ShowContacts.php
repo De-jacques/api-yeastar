@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Contact;
+use Illuminate\Support\Carbon;
 use Livewire\Component;
 use Illuminate\Support\Facades\Http;
 use Livewire\WithPagination;
@@ -38,6 +40,36 @@ class ShowContacts extends Component
         $this->allContact = json_decode($this->getContactsIPBX->getBody(), true);
         $this->contactsIPBX = collect($this->allContact['companycontacts']);
         // dd($this->contactsIPBX);
+
+        //Start Store Contacts in DB
+        foreach ($this->contactsIPBX as $key => $contact) {
+             $data[] = [
+                'firstname' => $contact['firstname'],
+                'lastname' => $contact['lastname'],
+                'email' => $contact['email'],
+                'company' => $contact['company'],
+                'businessnum' => $contact['businessnum'],
+                'businessnum2' => $contact['businessnum2'],
+                'businessfax' => $contact['businessfax'],
+                'mobile' => $contact['mobile'],
+                'mobile2' => $contact['mobile2'],
+                'homenum' => $contact['homenum'],
+                'homenum2' => $contact['homenum2'],
+                'homefax' => $contact['homefax'],
+                'othernum' => $contact['othernum'],
+                'zipcode' => $contact['zipcode'],
+                'street' => $contact['street'],
+                'city' => $contact['city'],
+                'state' => $contact['state'],
+                'country' => $contact['country'],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ];
+        }
+        $insertContacts = Contact::insert($data);
+
+        //End Store Contacts in DB
+
     }
 
 
