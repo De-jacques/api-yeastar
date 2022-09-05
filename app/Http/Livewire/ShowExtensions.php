@@ -11,12 +11,12 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Carbon;
 
-class ShowContacts extends Component
+class ShowExtensions extends Component
 {
     use WithPagination;
 
     public $apiURL; public $responseBody; public $statusCode; public $getToken; public $getExtension; public $extensionsIPBX;  public $allExtension;
-    public $getValueStatus; public $postInput; public $headers; public $addExtension; public $callAPI;
+    public $getValueStatus; public $postInput; public $headers; public $addExtension; public $callAPI; public $searchValue;
     protected $response; protected $getExtensionIPBX; protected $extensionsInDB;
 
     public $number;
@@ -107,10 +107,16 @@ class ShowContacts extends Component
     public function render()
     {
 
-        return view('livewire.show-contacts',
+        return view('livewire.show-extensions',
             [
                 'extensionsIPBX' => $this->extensionsIPBX,
-                'extensionsInDB' => Extension::paginate(10),
+                // 'extensionsInDB' => Extension::paginate(10),
+
+                'extensionsInDB' =>	Extension::where(function($sub_query){
+                    $sub_query->where('number', 'like', '%'.$this->searchValue.'%')
+                              ->orWhere('username', 'like', '%'.$this->searchValue.'%')
+                              ->orWhere('status', 'like', '%'.$this->searchValue.'%');
+                })->paginate(10)
             ]);
     }
 }

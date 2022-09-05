@@ -15,22 +15,18 @@ Extensions
               <div class="panel-body">
                 <div class="row">
                   <div class="col-md-6">
-                    <div class="mb-15">
+                    {{-- <div class="mb-15">
                       <button id="addToTable" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline btn-primary" type="button">
                         <i class="icon wb-plus" aria-hidden="true"></i> Ajouter
                       </button>
-                    </div>
+                    </div> --}}
                   </div>
                 </div>
                 <div id="exampleAddRow_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6">
-                            <div class="dataTables_length" id="exampleAddRow_length">
-                            </div>
+                    <div class="row d-flex">
+                        <div class="col-md-3 mb-4 ml-auto">
+                           <input type="search" class="form-control" wire:model="searchValue" placeholder="Rechercher par numéro, noms & prenoms, status" name="" id="">
                         </div>
-                        {{-- <div class="col-sm-12 col-md-6">
-                            <div id="exampleAddRow_filter" class="dataTables_filter"><label><input type="search" class="form-control form-control-sm" placeholder="Search.." aria-controls="exampleAddRow"></label></div>
-                        </div> --}}
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
@@ -42,7 +38,6 @@ Extensions
                                         <th>NUMERO</th>
                                         <th>NOMS & PRENOMS</th>
                                         <th>STATUT</th>
-                                        <th>ACTIONS</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -77,10 +72,6 @@ Extensions
                                             @if ($value['status'] == "Busy")
                                             <td>{{$value['status']}}</td>
                                             @endif
-                                            <td class="actions">
-                                                <a href="#" class="btn btn-sm btn-icon btn-pure btn-primary on-default edit-row" data-toggle="modal" data-target="#EditExtension{{$value['id']}}"><i class="icon wb-edit" aria-hidden="true"></i></a>
-                                                <a href="#" class="btn btn-sm btn-icon btn-pure btn-danger on-default remove-row" data-toggle="modal" data-target="#DeleteExtension{{$value['id']}}"><i class="icon wb-trash" aria-hidden="true"></i></a>
-                                            </td>
                                         </tr>
 
                                         <!--Start Add Extension Modal -->
