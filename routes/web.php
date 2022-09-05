@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApiController;
 use App\Http\Livewire\Dashboard;
+use App\Http\Livewire\ShowContacts;
 // use App\Http\Livewire\ShowContacts;
 use App\Http\Livewire\ShowExtensions;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', Dashboard::class);
 // Route::get('dashboard', [ApiController::class, "dashboard"])->name('dashboard');
 Route::get('/show-extensions', ShowExtensions::class)->name('show-extensions');
+Route::get('/show-contacts', ShowContacts::class)->name('show-contacts');
 Route::get('dashboard', Dashboard::class)->name('dashboard');
 Route::post('addExtension', [ApiController::class, "addExtension"])->name('addExtension');
 

@@ -438,7 +438,7 @@
                 </a>
             <ul class="site-menu-sub">
               <li class="site-menu-item">
-                <a class="animsition-link" href="{{route('show-extensions')}}">
+                <a class="animsition-link" href="{{route('show-contacts')}}">
                   <span class="site-menu-title">Liste</span>
                 </a>
               </li>

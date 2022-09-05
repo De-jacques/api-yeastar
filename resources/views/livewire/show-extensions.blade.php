@@ -10,7 +10,7 @@ Extensions
             <!-- Panel Table Add Row -->
             <div class="panel">
               <header class="panel-heading">
-                <h3 class="panel-title">Liste Extensions</h3>
+                <h3 class="panel-title"> <a href="{{route('show-extensions')}}">Liste Extensions</a></h3>
               </header>
               <div class="panel-body">
                 <div class="row">
