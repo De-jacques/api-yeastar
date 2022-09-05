@@ -42,39 +42,15 @@ Contacts
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- @foreach ($extensionsInDB as $key => $value) --}}
-                                            {{-- <tr class="gradeA odd" role="row">
+                                        @foreach ($contactsIPBX as $key => $value)
+                                            <tr class="gradeA odd" role="row">
                                                 <td>{{$value['id']}}</td>
-
-                                                @if ($value['status'] == "Registered")
-                                                    <td><img src="{{asset('assets/images/check.png')}}" class="" alt="" srcset=""></td>
-                                                @endif
-                                                @if ($value['status'] == "Unavailable")
-                                                    <td><img src="{{asset('assets/images/multiply.png')}}" class="" alt="" srcset=""></td>
-                                                @endif
-                                                @if ($value['status'] == "Ringing")
-                                                <td><img src="{{asset('assets/images/telephone.png')}}" class="" alt="" srcset=""></td>
-                                                @endif
-                                                @if ($value['status'] == "Busy")
-                                                <td><img src="{{asset('assets/images/time.png')}}" class="" alt="" srcset=""></td>
-                                                @endif
-                                                <td>{{$value['number']}}</td>
-                                                <td>{{$value['username']}}</td>
-
-                                                @if ($value['status'] == "Registered")
-                                                <td>{{$value['status']}}</td>
-                                                @endif
-                                                @if ($value['status'] == "Unavailable")
-                                                <td>{{$value['status']}}</td>
-                                                @endif
-                                                @if ($value['status'] == "Ringing")
-                                                <td>{{$value['status']}}</td>
-                                                @endif
-                                                @if ($value['status'] == "Busy")
-                                                <td>{{$value['status']}}</td>
-                                                @endif
-                                            </tr> --}}
-                                            <!--Start Add Extension Modal -->
+                                                <td>{{$value['firstname']}}</td>
+                                                <td>{{$value['lastname']}}</td>
+                                                <td>{{$value['mobile']}}</td>
+                                                <td>{{$value['company']}}</td>
+                                            </tr>
+                                            <!--Start Add Contact Modal -->
                                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
@@ -118,9 +94,9 @@ Contacts
                                                     </div>
                                                     </div>
                                                 </div>
-                                            <!--End Add Extension Modal -->
+                                            <!--End Add Contact Modal -->
 
-                                            <!--Start Edit Extension Modal -->
+                                            <!--Start Edit Contact Modal -->
                                             <div class="modal fade" id="EditExtension" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
@@ -139,7 +115,7 @@ Contacts
                                                 </div>
                                                 </div>
                                             </div>
-                                        <!--End Edit Extension Modal -->
+                                        <!--End Edit Contact Modal -->
 
                                          <!--Start Delete Extension Modal -->
                                          <div class="modal fade" id="DeleteExtension" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -161,8 +137,8 @@ Contacts
                                             </div>
                                             </div>
                                         </div>
-                                    <!--End Delete Extension Modal -->
-                                        {{-- @endforeach --}}
+                                    <!--End Delete Contact Modal -->
+                                        @endforeach
                                     </tbody>
                                 </table>
 
@@ -184,8 +160,8 @@ Contacts
                                             <li class="paginate_button page-item "><a href="#" aria-controls="exampleAddRow" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item next" id="exampleAddRow_next"><a href="#" aria-controls="exampleAddRow" data-dt-idx="5" tabindex="0" class="page-link">Next</a></li>
                                         </ul>
                                     </div> --}}
-                                    {{-- @if (count($extensionsInDB))
-                                    {{$extensionsInDB->links('livewire.livewire_pagination_links')}}
+                                    {{-- @if (count($contactsIPBX))
+                                    {{$contactsIPBX->links('livewire.livewire_pagination_links')}}
                                     @endif --}}
                                 </div>
                         </div>
