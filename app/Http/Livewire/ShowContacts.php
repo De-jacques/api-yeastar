@@ -124,8 +124,8 @@ class ShowContacts extends Component
         $dataContact = $this->validate([
             'firstname' => 'required',
             'lastname' => 'required',
-            // 'email' => 'required|email',
-            // 'company' => 'required',
+            'email' => 'required|email',
+            'company' => 'required',
             'businessnum' => 'required|numeric|digits:10',
             // 'mobile' => 'required|numeric|digits:10',
         ]);
@@ -134,20 +134,23 @@ class ShowContacts extends Component
         [
             'firstname' => $dataContact['firstname'],
             'lastname' => $dataContact['lastname'],
+            'email' => $dataContact['email'],
+            'company' => $dataContact['company'],
             'businessnum' => $dataContact['businessnum']
         ]);
 
+         Contact::create([
+            'firstname' => $dataContact['firstname'],
+            'lastname' => $dataContact['lastname'],
+            'email' => $dataContact['email'],
+            'company' => $dataContact['company'],
+            'businessnum' => $dataContact['businessnum'],
+            // 'mobile' => $dataContact['mobile'],
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
         redirect()->route('show-contacts')->with('add-contact', 'Le contact a été ajouté avec succès');
-        // Contact::create([
-        //     'firstname' => $dataContact['firstname'],
-        //     'lastname' => $dataContact['lastname'],
-        //     'email' => $dataContact['email'],
-        //     'company' => $dataContact['company'],
-        //     'businessnum' => $dataContact['businessnum'],
-        //     'mobile' => $dataContact['mobile'],
-        //     'created_at' => Carbon::now(),
-        //     'updated_at' => Carbon::now()
-        // ]);
+
             redirect()->route('show-contacts')->with('add-contact', 'Le contact a été ajouté avec succès');
             $this->resetFields();
     }

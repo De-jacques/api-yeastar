@@ -55,7 +55,7 @@ Contacts
                                                 <td>{{$value['id']}}</td>
                                                 <td>{{$value['firstname']}}</td>
                                                 <td>{{$value['lastname']}}</td>
-                                                <td>{{$value['mobile']}}</td>
+                                                <td>{{$value['businessnum']}}</td>
                                                 <td>{{$value['company']}}</td>
                                             </tr>
                                             <!--Start Edit Contact Modal -->
