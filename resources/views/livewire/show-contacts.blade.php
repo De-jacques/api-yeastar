@@ -16,11 +16,11 @@ Contacts
                   <div class="panel-body">
                     <div class="row">
                       <div class="col-md-6">
-                        {{-- <div class="mb-15">
-                          <button id="addToTable" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline btn-primary" type="button">
+                        <div class="mb-15">
+                          <button id="addToTable" data-toggle="modal" data-target="#AddContact" class="btn btn-outline btn-primary" type="button">
                             <i class="icon wb-plus" aria-hidden="true"></i> Ajouter
                           </button>
-                        </div> --}}
+                        </div>
                       </div>
                     </div>
                     <div id="exampleAddRow_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -31,6 +31,14 @@ Contacts
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
+                                @if (Session::get('add-contact'))
+                                    <div class="alert alert-success alert-dismissible fade show mt-2 mb-2" role="alert">
+                                        {{Session::get('add-contact')}}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                @endif
                                 <table class="table table-bordered table-hover table-striped dataTable no-footer" cellspacing="0" id="exampleAddRow" role="grid" aria-describedby="exampleAddRow_info">
                                      <thead>
                                         <tr>
@@ -50,52 +58,6 @@ Contacts
                                                 <td>{{$value['mobile']}}</td>
                                                 <td>{{$value['company']}}</td>
                                             </tr>
-                                            <!--Start Add Contact Modal -->
-                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header bg-primary">
-                                                        <h5 class="modal-title text-white" id="exampleModalLabel">Ajouter une extension</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form>
-                                                                <h1>...</h1>
-                                                                  <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <input type="text" class="form-control @error('number') is-invalid @enderror" placeholder="Number" name="number" wire:model="number" id="">
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <input type="text" class="form-control" placeholder="Username" name="username" id="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mt-2">
-                                                                <div class="col-md-12">
-                                                                  <input type="text" class="form-control" placeholder="Registername" name="registername" id="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mt-2">
-                                                                <div class="col-md-6">
-                                                                    <input type="text" class="form-control" placeholder="Registerpassword" name="registerpassword" id="">
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <input type="text" class="form-control" placeholder="Confirm Registerpassword" name="confirmRegisterpassword" id="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button"  class="btn btn-primary">Enregistrer</button>
-                                                            </div>
-                                                            </form>
-
-                                                        </div>
-
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                            <!--End Add Contact Modal -->
-
                                             <!--Start Edit Contact Modal -->
                                             <div class="modal fade" id="EditExtension" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
@@ -139,6 +101,51 @@ Contacts
                                         </div>
                                     <!--End Delete Contact Modal -->
                                         @endforeach
+                                          <!--Start Add Contact Modal -->
+                                          <div wire:ignore.self class="modal fade" id="AddContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-primary">
+                                                <h5 class="modal-title text-white" id="exampleModalLabel">Ajouter un contact</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form autocomplete="off">
+                                                        @csrf
+                                                        {{-- <h1>...</h1> --}}
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <input type="text" class="form-control @error('firstname') is-invalid @enderror" placeholder="Nom" wire:model='firstname' name="firstname" id="">
+                                                        </div>
+                                                        <div class="col-md-12 mt-2">
+                                                            <input type="text" class="form-control @error('lastname') is-invalid @enderror" placeholder="Prénoms" wire:model='lastname' name="lastname" id="">
+                                                        </div>
+                                                        <div class="col-md-12 mt-2">
+                                                            <input type="text" class="form-control @error('email') is-invalid @enderror" placeholder="Email" wire:model='email' name="email" id="">
+                                                        </div>
+                                                        <div class="col-md-12 mt-2">
+                                                            <input type="text" class="form-control @error('company') is-invalid @enderror" placeholder="Société" wire:model='company' name="company" id="">
+                                                        </div>
+                                                        <div class="col-md-6 mt-2">
+                                                            <input type="text" class="form-control @error('businessnum') is-invalid @enderror" placeholder="Fixe" wire:model='businessnum' name="businessnum" id="">
+                                                        </div>
+                                                        <div class="col-md-6 mt-2">
+                                                            <input type="text" class="form-control @error('mobile') is-invalid @enderror" placeholder="Téléphone" wire:model='mobile' name="mobile" id="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer mt-3">
+                                                        <button type="submit" wire:click.prevent="addContact()"  class="btn btn-primary close-modal">Enregistrer</button>
+                                                    </div>
+                                                    </form>
+
+                                                </div>
+
+                                            </div>
+                                            </div>
+                                        </div>
+                                    <!--End Add Contact Modal -->
                                     </tbody>
                                 </table>
 

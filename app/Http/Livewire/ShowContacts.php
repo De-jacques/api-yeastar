@@ -13,9 +13,11 @@ class ShowContacts extends Component
 {
     use WithPagination;
 
-    public $apiURL; public $callAPI; public $postInput; public $headers; public $getContact;
-    public $statusCode; public $responseBody; public $getToken; public $allContact; public $contactsIPBX;
-    protected $getContactsIPBX; protected $response; protected $contactsInDB;
+    public $apiURL, $callAPI, $postInput, $headers, $getContact, $statusCode;
+    public $responseBody, $getToken, $allContact, $contactsIPBX;
+
+    public $firstname, $lastname, $email, $company, $mobile, $businessnum, $addContact;
+    protected $getContactsIPBX, $response, $contactsInDB, $saveContactOnIPBX;
 
 
     public function mount(){
@@ -38,6 +40,7 @@ class ShowContacts extends Component
         $this->getToken = $this->responseBody['token'];
         $this->getContact = 'http://192.168.1.251:8088/api/v2.0.0/companycontacts/query?token='.$this->getToken;
         $this->getContactsIPBX = Http::post($this->getContact, ['id' => 'all']);
+        $this->addContactOnIPBX = 'http://192.168.1.251:8088/api/v2.0.0/companycontacts/add?token='.$this->getToken;
         $this->allContact = json_decode($this->getContactsIPBX->getBody(), true);
         $this->contactsIPBX = collect($this->allContact['companycontacts']);
         // dd($this->contactsIPBX);
@@ -107,11 +110,54 @@ class ShowContacts extends Component
 
     }
 
+    private function resetFields(){
+        $this->firstname = '';
+        $this->lastname = '';
+        $this->email = '';
+        $this->company = '';
+        $this->mobile = '';
+        $this->businessnum = '';
+    }
+
+    public function addContact(){
+
+        $dataContact = $this->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            // 'email' => 'required|email',
+            // 'company' => 'required',
+            'businessnum' => 'required|numeric|digits:10',
+            // 'mobile' => 'required|numeric|digits:10',
+        ]);
+
+        $this->saveContactOnIPBX = Http::post($this->addContactOnIPBX,
+        [
+            'firstname' => $dataContact['firstname'],
+            'lastname' => $dataContact['lastname'],
+            'businessnum' => $dataContact['businessnum']
+        ]);
+
+        redirect()->route('show-contacts')->with('add-contact', 'Le contact a été ajouté avec succès');
+        // Contact::create([
+        //     'firstname' => $dataContact['firstname'],
+        //     'lastname' => $dataContact['lastname'],
+        //     'email' => $dataContact['email'],
+        //     'company' => $dataContact['company'],
+        //     'businessnum' => $dataContact['businessnum'],
+        //     'mobile' => $dataContact['mobile'],
+        //     'created_at' => Carbon::now(),
+        //     'updated_at' => Carbon::now()
+        // ]);
+            redirect()->route('show-contacts')->with('add-contact', 'Le contact a été ajouté avec succès');
+            $this->resetFields();
+    }
+
 
     public function render()
     {
         return view('livewire.show-contacts', [
-            'contactsIPBX' => Extension::paginate(10)
+            'contactsInDB' => $this->contactsInDB,
+            'contactsIPBX' => $this->contactsIPBX
         ]);
     }
 }
